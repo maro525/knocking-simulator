@@ -7,7 +7,10 @@ void ofApp::setup()
     view.setModel(&model);
     // model.setup();
 
-    ofBackground(10);
+    ofBackground(249, 237, 219);
+    ofSetCircleResolution(100);
+
+    ofAddListener(model.knockOnTableEvent, &view, &View::addKnock);
 }
 
 //--------------------------------------------------------------

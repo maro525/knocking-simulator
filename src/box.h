@@ -10,10 +10,12 @@ public:
 
     void loadSound(string src);
     void monitor();
-    void trigger();
+    void trigger(ofVec2f knockpos);
     void knock();
 
     ofVec2f getPos() { return pos; };
+    bool getWaiting() { return bWaiting; };
+    bool getNormaling(){ return bNormaling; };
 
     ofEvent<ofVec2f> knockEvent;
 
@@ -23,4 +25,8 @@ private:
     float interval;
     float ringTime;
     bool bWaiting;
+    bool bNormaling;
+    float normalTime;
+
+    float distance_thresh = 300;
 };

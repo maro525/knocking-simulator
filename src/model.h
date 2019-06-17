@@ -14,6 +14,7 @@ public:
 
     void monitor();
     vector<Box*> getBoxes() { return boxes; };
+    ofEvent<ofVec2f> knockOnTableEvent;
 
 private:
     vector<Box*> boxes;

@@ -37,9 +37,10 @@ void Model::addBox(ofVec2f pos, float interval)
 
 void Model::knocked(ofVec2f &c_pos)
 {
+    ofNotifyEvent(knockOnTableEvent, c_pos);
     for (auto box : boxes)
     {
-        box->trigger();
+        box->trigger(c_pos);
     }
 }
 
