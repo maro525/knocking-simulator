@@ -10,13 +10,13 @@ public:
     void setup();
     void addBoxes(int num);
     void addBox(ofVec2f pos, float interval);
-    void knocked(ofVec2f c_pos);
+    void knocked(ofVec2f &c_pos);
 
     void monitor();
-    vector<Box> getBoxes() { return boxes; };
+    vector<Box*> getBoxes() { return boxes; };
 
 private:
-    vector<Box> boxes;
-    float a = 5.0;
+    vector<Box*> boxes;
+    float a = 2.0;
     string soundsrc;
 };

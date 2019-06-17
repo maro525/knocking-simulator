@@ -53,7 +53,7 @@ void ofApp::mousePressed(int x, int y, int button)
 {
     ofVec2f clickpos = ofVec2f(x, y);
     if(bShift){
-        float interval = (1.0 + ofRandomf()) * 5.0;
+        float interval = (1.0 + ofRandomf()) * 3.0;
         model.addBox(clickpos, interval);
     } else {
         model.knocked(clickpos);

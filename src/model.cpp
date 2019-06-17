@@ -27,16 +27,19 @@ void Model::addBoxes(int num)
 
 void Model::addBox(ofVec2f pos, float interval)
 {
-    Box box = Box(pos, interval);
-    box.loadSound(soundsrc);
-    boxes.push_back(box);
+    std::cout << "Box Added at " << pos << endl;
+    Box * b;
+    b = new Box(pos, interval);
+    b->loadSound(soundsrc);
+    ofAddListener(b->knockEvent, this, &Model::knocked);
+    boxes.push_back(b);
 }
 
-void Model::knocked(ofVec2f c_pos)
+void Model::knocked(ofVec2f &c_pos)
 {
     for (auto box : boxes)
     {
-        box.trigger();
+        box->trigger();
     }
 }
 
@@ -44,6 +47,6 @@ void Model::monitor()
 {
     for (auto box : boxes)
     {
-        box.monitor();
+        box->monitor();
     }
 }

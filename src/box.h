@@ -1,7 +1,5 @@
 #pragma once
 
-
-
 #include "ofMain.h"
 
 class Box
@@ -11,16 +9,18 @@ public:
     ~Box();
 
     void loadSound(string src);
-    void trigger();
     void monitor();
+    void trigger();
     void knock();
 
     ofVec2f getPos() { return pos; };
+
+    ofEvent<ofVec2f> knockEvent;
 
 private:
     ofVec2f pos;
     ofSoundPlayer knocksound;
     float interval;
     float ringTime;
-    bool bWaiting = false;
+    bool bWaiting;
 };
