@@ -1,9 +1,8 @@
 #include "box.h"
 
-Box::Box(ofVec2f _pos, float i)
+Box::Box(ofVec2f _pos)
 {
     pos = _pos;
-    interval = i;
     bWaiting = false;
     bNormaling = false;
 }
@@ -15,19 +14,22 @@ Box::~Box()
 void Box::loadSound(string src)
 {
     knocksound.load(src);
-    knocksound.setVolume(0.75f);
+    knocksound.setVolume(3.0f);
     knocksound.setLoop(false);
     std::cout << "load " << src << endl;
 }
 
 void Box::monitor()
 {
-    if (!bWaiting && !bNormaling) return;
+    if (!bWaiting && !bNormaling)
+        return;
 
     float now = ofGetElapsedTimef();
-    if(bWaiting){
+    if (bWaiting)
+    {
         float diff = ringTime - now;
-        if(diff < 0){
+        if (diff < 0)
+        {
             bWaiting = false;
         }
         else if (diff < 0.5)
@@ -35,13 +37,14 @@ void Box::monitor()
             knock();
             bNormaling = true;
             bWaiting = false;
-            normalTime = now + interval;
+            normalTime = now + interval * 2;
         }
     }
-    else if(bNormaling)
+    else if (bNormaling)
     {
         float diff = normalTime - now;
-        if(diff < 0.5) {
+        if (diff < 0.5)
+        {
             bNormaling = false;
         }
     }
@@ -49,10 +52,13 @@ void Box::monitor()
 
 void Box::trigger(ofVec2f knockpos)
 {
-    if(bWaiting || bNormaling) return;
+    if (bWaiting || bNormaling)
+        return;
 
     float dis = pos.distance(knockpos);
-    if(dis > distance_thresh) return;
+    if (dis > distance_thresh)
+        return;
+    interval = max_waittime * dis / distance_thresh;
 
     float now = ofGetElapsedTimef();
     ringTime = now + interval;

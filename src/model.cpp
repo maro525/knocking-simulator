@@ -20,16 +20,53 @@ void Model::addBoxes(int num)
     for (int i = 0; i < num; i++)
     {
         ofVec2f pos = ofVec2f(ofRandom(100, ofGetWidth() - 100), ofRandom(100, ofGetHeight() - 100));
-        float interval = (1.0 + ofRandomf()) * a;
-        addBox(pos, interval);
+        addBox(pos);
     }
 }
 
-void Model::addBox(ofVec2f pos, float interval)
+void Model::addBox(ofVec2f pos)
 {
     std::cout << "Box Added at " << pos << endl;
-    Box * b;
-    b = new Box(pos, interval);
+    Box *b;
+    b = new Box(pos);
+    int s;
+    if (bSoundDiversity)
+        s = ofRandom(0, 8);
+    else
+        s = ofRandom(0, 1);
+
+    switch (s)
+    {
+    case 0:
+        soundsrc = "knock.mp3";
+        break;
+    case 1:
+        soundsrc = "1.mp3";
+        break;
+    case 2:
+        soundsrc = "2.mp3";
+        break;
+    case 3:
+        soundsrc = "3.mp3";
+        break;
+    case 4:
+        soundsrc = "4.mp3";
+        break;
+    case 5:
+        soundsrc = "5.mp3";
+        break;
+    case 6:
+        soundsrc = "6.mp3";
+        break;
+    case 7:
+        soundsrc = "7.mp3";
+        break;
+    case 8:
+        soundsrc = "8.mp3";
+        break;
+    default:
+        break;
+    }
     b->loadSound(soundsrc);
     ofAddListener(b->knockEvent, this, &Model::knocked);
     boxes.push_back(b);

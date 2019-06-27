@@ -5,7 +5,7 @@
 class Box
 {
 public:
-    Box(ofVec2f _pos, float i = 3.0);
+    Box(ofVec2f _pos);
     ~Box();
 
     void loadSound(string src);
@@ -15,18 +15,19 @@ public:
 
     ofVec2f getPos() { return pos; };
     bool getWaiting() { return bWaiting; };
-    bool getNormaling(){ return bNormaling; };
+    bool getNormaling() { return bNormaling; };
 
     ofEvent<ofVec2f> knockEvent;
 
 private:
     ofVec2f pos;
     ofSoundPlayer knocksound;
-    float interval;
     float ringTime;
     bool bWaiting;
     bool bNormaling;
     float normalTime;
+    float interval;
 
     float distance_thresh = 300;
+    float max_waittime = 1.2;
 };

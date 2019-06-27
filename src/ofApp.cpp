@@ -28,7 +28,8 @@ void ofApp::draw()
 //--------------------------------------------------------------
 void ofApp::keyPressed(int key)
 {
-    if(key == OF_KEY_SHIFT) {
+    if (key == OF_KEY_SHIFT)
+    {
         bShift = true;
     }
 }
@@ -36,7 +37,8 @@ void ofApp::keyPressed(int key)
 //--------------------------------------------------------------
 void ofApp::keyReleased(int key)
 {
-    if(key == OF_KEY_SHIFT){
+    if (key == OF_KEY_SHIFT)
+    {
         bShift = false;
     }
 }
@@ -55,10 +57,12 @@ void ofApp::mouseDragged(int x, int y, int button)
 void ofApp::mousePressed(int x, int y, int button)
 {
     ofVec2f clickpos = ofVec2f(x, y);
-    if(bShift){
-        float interval = (1.0 + ofRandomf()) * 3.0;
-        model.addBox(clickpos, interval);
-    } else {
+    if (bShift)
+    {
+        model.addBox(clickpos);
+    }
+    else
+    {
         model.knocked(clickpos);
     }
 }
