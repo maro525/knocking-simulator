@@ -63,7 +63,9 @@ void ofApp::mousePressed(int x, int y, int button)
     }
     else
     {
-        model.knocked(clickpos);
+        // model.knocked(clickpos);
+        int value = int(ofRandom(0, 100));
+        model.knockedv(value);
     }
 }
 

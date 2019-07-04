@@ -68,16 +68,28 @@ void Model::addBox(ofVec2f pos)
         break;
     }
     b->loadSound(soundsrc);
-    ofAddListener(b->knockEvent, this, &Model::knocked);
+    b->set_normal_interval_time();
+    // ofAddListener(b->knockEvent, this, &Model::knocked);
+    ofAddListener(b->knockValueEvent, this, &Model::knockedv);
     boxes.push_back(b);
 }
 
 void Model::knocked(ofVec2f &c_pos)
 {
     ofNotifyEvent(knockOnTableEvent, c_pos);
+
     for (auto box : boxes)
     {
         box->trigger(c_pos);
+    }
+}
+
+void Model::knockedv(int &value)
+{
+    ofNotifyEvent(knockVOnTableEvent, value);
+    for (auto box : boxes)
+    {
+        box->triggerByValue(value);
     }
 }
 

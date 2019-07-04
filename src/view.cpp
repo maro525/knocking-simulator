@@ -53,7 +53,7 @@ void View::drawKnocks()
         ofSetLineWidth(3);
         ofNoFill();
         ofDrawCircle(k.pos, k.radius);
-        if (k.radius < 300)
+        if (k.radius < 1000)
         {
             k.radius = k.radius + speed;
             knocks.push(k);

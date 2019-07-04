@@ -9,8 +9,10 @@ public:
     ~Box();
 
     void loadSound(string src);
+    void set_normal_interval_time();
     void monitor();
     void trigger(ofVec2f knockpos);
+    void triggerByValue(int value);
     void knock();
 
     ofVec2f getPos() { return pos; };
@@ -18,6 +20,7 @@ public:
     bool getNormaling() { return bNormaling; };
 
     ofEvent<ofVec2f> knockEvent;
+    ofEvent<int> knockValueEvent;
 
 private:
     ofVec2f pos;
@@ -30,4 +33,6 @@ private:
 
     float distance_thresh = 300;
     float max_waittime = 1.2;
+    float normal_interval_time;
+    float normal_value = 20.0;
 };
